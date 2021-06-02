@@ -1,0 +1,467 @@
+﻿@{
+    var alumno = ViewData["alumno"] as ToqueDeCampana_Practica.Models.TblAlumno;
+    List<SelectListItem> items = (List<SelectListItem>)ViewBag.Item;
+    List<SelectListItem> ciudad = (List<SelectListItem>)ViewBag.Ciudad;
+}
+<style>
+    .card-header {
+        background-color: #1b6ec2;
+    }
+
+    .enviar {
+        width: 80%;
+        border-radius: 5%;
+        margin-left: 38%;
+    }
+
+    .radio {
+        margin-left: 9%;
+    }
+</style>
+<form>
+    <div class="card mb-3">
+        <img src="https://album.mediaset.es/eimg/2020/05/05/oyC1BkljrC98J9K2REAoW6.jpg?w=1200" class="card-img-top" alt="...">
+        <div class="card-body">
+            <h3 class="card-title">Toque de <strong>CAMPANA</strong></h3>
+            <h5 class="card-title">Aviso de Privacidad</h5>
+            <p class="card-text"><strong>La Universidad de Monterrey, UDEM, Institución Educativa Privada</strong> con domicilio en Avenida Ignacio Morones Prieto, Número 4500 Poniente, Piso 4, Colonia Jesús M. Garza, Municipio San Pedro Garza García, Nuevo León, Código Postal 66238, México, sitio web: www.udem.edu.mx, correo electrónico datospersonales@udem.edu, teléfono (81) 8215-1000 ext. 2000 y horario de atención de lunes a jueves de 10:00 a 13:00 h; hace de su conocimiento que las finalidades para las cuales realizamos el tratamiento de sus datos personales de identificación y de contacto se relacionan con fines de organización y gestión del evento de graduación para el periodo Primavera 2021. Le informamos que sí realizamos transferencia nacional de sus datos personales a Estafeta Mexicana, S.A. DE C.V., con la finalidad de enviar material y kits de graduación a los estudiantes UDEM, a través de servicios de mensajería y paquetería. Los únicos datos personales transferidos son: nombre completo y domicilio particular. Conozca la versión Integral de este Aviso de Privacidad en nuestro sitio web </p>
+            <p class="card-text"><small class="text-muted">oficial: www.udem.edu.mx/es/conoce/avisos-de-privacidad</small></p>
+            <div class="custom-control custom-checkbox custom-control-inline">
+                <input id="chk1" type="checkbox" name="chk" class="custom-control-input"> <label for="chk1" class="custom-control-label text-sm">Sí, autorizo</label>
+            </div>
+        </div>
+    </div>
+
+    <div class="card mb-3">
+
+        <h5 class="card-header">Bienvenida</h5>
+        <div class="card-body">
+
+            <h5 class="card-title">¡Hola,<strong> "@alumno.VchNombre @alumno.VchApellidos"</strong>  </h5>
+            <p class="card-text">
+                Nos estamos preparando para crear una experiencia inolvidable previo a la Graduación Académica y Commencement PR’21. Por ello queremos que personalices tu Kit de Graduación con los diferentes artículos que hemos elegido para ti. También te invitamos a vivir la experiencia del Toque de Campana Vox Veritatis de las disertaciones del semestre Primavera 2021. Para que todo esto sea posible,<strong> te solicitamos que nos ayudes confirmando tu información y respondiendo las siguientes preguntas:</strong>
+            </p>
+        </div>
+    </div>
+    <div class="card mb-3">
+        <h5 class="card-header">Datos Generales</h5>
+        <div class="card-body">
+            <div class="row g-3">
+                <div class="col-md-6" style="display:none">
+
+                    <input type="text" class="form-control" id="id" value="@alumno.IdAlumnos" readonly>
+                </div>
+                <div class="col-md-6">
+                    <label for="nombre" class="form-label">Nombre</label>
+                    <input type="text" class="form-control" id="nombre" value="@alumno.VchNombre" readonly>
+                </div>
+                <div class="col-md-6">
+                    <label for="apellidos" class="form-label">Apellidos</label>
+                    <input type="text" class="form-control" id="apellidos" value="@alumno.VchApellidos" readonly>
+                </div>
+                <div class="col-md-6">
+                    <label for="matricula" class="form-label">Matrícula</label>
+                    <input type="text" class="form-control" id="matricula" value="@alumno.VchMatricula" readonly>
+                </div>
+
+                <div class="col-md-6">
+                    <label for="correo" class="form-label">Correo Institucional</label>
+                    <input type="text" class="form-control" id="correo" value="@alumno.VchCorreo" readonly>
+                </div>
+                <div class="col-md-6">
+                    <label for="telefono1" class="form-label">Teléfono</label>
+                    <input type="text" class="form-control" id="telefono1" value="@alumno.VchTel1">
+                </div>
+                <div class="col-md-6">
+                    <label for="telefono2" class="form-label">Teléfono 2</label>
+                    <input type="text" class="form-control" id="telefono2" value="@alumno.VchTel2">
+                </div>
+
+                <div class="col-12">
+                    <label for="universidad" class="form-label">Universidad</label>
+                    @Html.DropDownList("Universidad", items, "Seleciona tu Universidad", new { @class = "form-control" })
+                </div>
+                <div class="col-12">
+                    <label for="carrera" class="form-label">Carrera</label>
+                    @Html.DropDownList("Carrera", new List<SelectListItem>(),
+                              " -- Seleccionar la Carrera", new { @class = "form-control" })
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="card mb-3">
+
+        <h5 class="card-header">Disertaciones</h5>
+        <div class="card-body">
+            <p class="card-text">
+                Sabemos que el Toque de la Campana Vox Veritatis es un paso muy importante para finalizar tu educación profesional, por lo que hemos trabajado para que puedas vivir esta experiencia en 2 modalidades: presencial o virtual.
+            </p>
+            <h5 class="card-text text-center">Semestre de disertación</h5>
+            <div class="radio">
+
+
+                <div class="form-check form-check-inline col-md-4 text-center">
+                    <input class="form-check-input" type="radio" name="inlineRadioOptions" onclick="toggle(this)" value="a">
+                    <label class="form-check-label" for="inlineRadio1">Otoño 2020</label>
+                </div>
+                <div class="form-check form-check-inline col-md-4 text-center ">
+                    <input class="form-check-input" type="radio" name="inlineRadioOptions" onclick="toggle(this)" value="b">
+                    <label class="form-check-label" for="inlineRadio2">Primavera 2021</label>
+                </div>
+                <div class="form-check form-check-inline col-md-3 text-center">
+                    <input class="form-check-input" type="radio" name="inlineRadioOptions" onclick="toggle(this)" value="c">
+                    <label class="form-check-label" for="inlineRadio3">Otro</label>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+
+    <div class="card mb-3" id="uno" style="display:none">
+
+        <h5 class="card-header">Confirma tu Información</h5>
+        <div class="card-body">
+            <p class="card-text">
+                Para el envío de tu kit de graduación, por favor ayúdanos confirmando tu dirección actual:
+                *Es importante que estés en ese domicilio del 20 mayo al 18 junio para recibir tu kit.
+            </p>
+
+            <br>
+
+            <div class="row g-3">
+                <div class="col-md-6">
+                    <label for="nombre" class="form-label">Calle</label>
+                    <input type="text" class="form-control" id="calle" value="@alumno.VchCalle">
+                </div>
+                <div class="col-md-6">
+                    <label for="ciudad" class="form-label">Ciudad</label>
+                    @Html.DropDownList("Ciudad", ciudad, "Seleciona tu Ciudad", new { @class = "form-control" })
+                </div>
+                <div class="col-md-6">
+                    <label for="municipio" class="form-label">Municipio</label>
+                    <input type="text" class="form-control" id="municipio" value="">
+                </div>
+                <div class="col-md-6">
+                    <label for="estado" class="form-label">Estado</label>
+                    <input type="text" class="form-control" id="estado" value="">
+                </div>
+
+                <div class="col-md-6">
+                    <label for="pais" class="form-label">Pais</label>
+                    <input type="text" class="form-control" id="pais" value="">
+                </div>
+                <div class="col-md-6">
+                    <label for="cp" class="form-label">Codigo Postal</label>
+                    <input type="text" class="form-control" id="cp" value="">
+                </div>
+                <div class="col-md-6">
+                    <label for="interiro" class="form-label">No.Interrior</label>
+                    <input type="text" class="form-control" id="interior" value="">
+                </div>
+                <div class="col-md-6">
+                    <label for="exterior" class="form-label">No.Exterior</label>
+                    <input type="text" class="form-control" id="exterior" value="">
+                </div>
+
+                <div class="col-12">
+                    <label for="maps" class="form-label">Google Maps</label>
+                    <input type="text" class="form-control" id="maps" value="">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card mb-3" id="primavera" style="display:none">
+
+        <h5 class="card-header">Seleccionó Primavera 2021</h5>
+        <div class="card-body">
+
+
+            <p class="card-text text-center">
+                <strong> ¿Asistirás al campus a recoger tu kit y toque de campana?</strong>
+            </p>
+
+            <br>
+
+            <div class="form-check form-check-inline col-md-3">
+                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="presencial1" onclick="toggle(this)" value="1">
+                <label class="form-check-label" for="presencial1">Si</label>
+            </div>
+            <div class="form-check form-check-inline col-md-3">
+                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="virtual1" onclick="toggle(this)" value="2">
+                <label class="form-check-label" for="virtual1">No</label>
+            </div>
+            <br>
+            <br>
+
+            <form class="row g-3">
+                <div class="col-md-12 " id="presencial" style="display:none">
+
+                    <h5 class="card-title text-center"><strong>Sujeto a semáforo epidemiológico en Nuevo León, *Has elegido tu Toque de Campana Vox Veritatis Presencial</strong></h5>
+
+                </div>
+                <div class="col-md-12" id="virtual" style="display:none">
+
+                    <h5 class="card-title text-center"><strong>Has escogido tu Toque de Campana Vox Veritatis Virtual.</strong></h5>
+                </div>
+
+            </form>
+        </div>
+    </div>
+
+
+    <div class="d-grid gap-2 enviar">
+
+        <button class="btn btn-success btn-lg " id="btn-enviar" type="button">Enviar Formulario</button>
+
+    </div>
+
+
+
+    <div class="card mb-3" style="display:none">
+        <h5 class="card-header">Personaliza Tu KIT</h5>
+        <div class="card-body">
+            <h5 class="card-title">Kit base + selecciona un artículo de cada categoría*</h5>
+            <div class="card-deck">
+                <div class="card col-md-6">
+                    <img class="card-img-top" src="https://ih1.redbubble.net/image.1259187399.9682/ur,socks_flatlay_medium,square,600x600-bg,f8f8f8.1.jpg" alt="Card image cap">
+                    <div class="card-body">
+                        <h5 class="card-title">Calcetines Entropía</h5>
+
+                    </div>
+                    <div class="card-footer">
+
+
+                    </div>
+                </div>
+                <div class="card col-md-6">
+                    <img class="card-img-top" src="https://static.nike.com/a/images/t_PDP_1280_v1/f_auto,q_auto:eco/342eeeb7-6d90-45b8-bfc3-739c74ad9567/calcetines-largos-jordan-everyday-max-3-pares-yATYnOzP.png" alt="Card image cap">
+                    <div class="card-body">
+                        <h5 class="card-title">Calcetines Vox Veritatis</h5>
+
+                    </div>
+                    <div class="card-footer">
+                        <small class="text-muted"></small>
+                    </div>
+                </div>
+
+                <div class="card col-md-6">
+                    <img class="card-img-top" src="https://scene7.zumiez.com/is/image/zumiez/image/Nike-NSW-Green-Fleece-Hoodie-_335150.jpg" alt="Card image cap">
+                    <div class="card-body">
+                        <h5 class="card-title">Hoodie</h5>
+
+                    </div>
+                    <div class="card-footer">
+                        <small class="text-muted"></small>
+                    </div>
+                </div>
+                <div class="card col-md-6">
+                    <img class="card-img-top" src="https://cdn.shopify.com/s/files/1/0259/6677/2258/products/TermosYetiBlancoyNegro_700x700.png?v=1604937593" alt="Card image cap">
+                    <div class="card-body">
+                        <h5 class="card-title">Termo</h5>
+
+                    </div>
+                    <div class="card-footer">
+                        <small class="text-muted"></small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</form>
+<script type="text/javascript">
+
+    function toggle(elemento) {
+        if (elemento.value == "a") {
+            document.getElementById("uno").style.display = "Block";
+            document.getElementById("primavera").style.display = "none";
+
+        } else {
+            if (elemento.value == "b") {
+
+                document.getElementById("uno").style.display = "none";
+                document.getElementById("primavera").style.display = "Block";
+
+            } else {
+                if (elemento.value == "c") {
+
+                    document.getElementById("uno").style.display = "none";
+                    document.getElementById("primavera").style.display = "none";
+                }
+
+            }
+        }
+
+        if (elemento.value == "1") {
+            document.getElementById("presencial").style.display = "Block";
+            document.getElementById("virtual").style.display = "None";
+
+        } else if (elemento.value == "2") {
+            document.getElementById("presencial").style.display = "None";
+            document.getElementById("virtual").style.display = "Block";
+
+        }
+    }
+</script>
+
+
+@section scripts {
+
+    <script>
+            $(document).ready(function () {
+                $("#Universidad").change(function () {
+
+                    $.getJSON("/Home/GetCarreraId", { Id: $("#Universidad").val() }, function (data) {
+
+                        $("#Carrera").empty();
+                        $("#Carrera").append("<option value> Seleccionar La Carrera de la " + $("#Universidad option:selected").text() + " --</option>")
+                        $.each(JSON.parse(data), function (index, row) {
+
+                            $("#Carrera").append("<option value='" + row.IdCarrera + "'>" + row.VchCarrera + "</option>")
+
+                        });
+                    });
+                });
+
+                $("#Ciudad").change(function () {
+
+                    $.getJSON("/Home/GetResidencia", { Id: $("#Ciudad").val() }, function (data) {
+
+                        $("#municipio").empty();
+                        $("#estado").empty();
+                        $("#pais").empty();
+                        $("#cp").empty();
+
+                        $.each(JSON.parse(data), function (index, row) {
+
+                            $("#municipio").val(row.VchMunicipio);
+                            $("#estado").val(row.VchEstado)
+                            $("#pais").val(row.VchPais)
+                            $("#cp").val(row.VchCPostal)
+
+                        });
+                    });
+                });
+            });
+
+
+            $('#btn-enviar').click(function () {
+
+
+                id_alumno = $('#id').val();
+                tel1 = $('#telefono1').val();
+                tel2 = $('#telefono2').val();
+                calle = $('#calle').val();
+                interior = $('#interior').val();
+                exterior = $('#exterior').val();
+                exterior = $('#maps').val();
+                id_residencia = $('#Ciudad').val();
+                id_universidad = $('#Universidad').val();
+                id_carrera = $('#Carrera').val();
+
+
+
+                $.ajax({
+                    type: "POST",
+                    url:"@Url.Action("Post", "Home")",
+                     data: {
+                        IdAlumnos: $("#id").val(),
+                        VchMatricula: $("#matricula").val(),
+                         VchNombre: $("#nombre").val(),
+                         VchApellidos: $("#apellidos").val(),
+                         VchCurp: "hhhf",
+                         VchFechaNac: null,
+                         VchTel1: $("#telefono1").val(),
+                         VchTel2: $("#telefono2").val(),
+                         VchCorreo: $("#correo").val(),
+                         VchDisertacion: "Otoño 2020",
+                         VchFoto: "hbvhvhv",
+                         VchAvatar: "bb b b",
+                         DtFechaIngreso: null,
+                         VchCalle: $("#calle").val(),
+                         IntNoExterior: $("#exterior").val(),
+                         IntNoInterior: $("#interior").val(),
+                         VchMaps: $("#maps").val(),
+                         IdUniversidad2: $("#Universidad").val(),
+                         IdCarrera2: $("#Carrera").val(),
+                         IdResidencia2: $("#Ciudad").val()
+                    },
+
+                    success: function (response) {
+                        if (response!= null) {
+
+                            $('#exito').modal('show');
+
+
+
+
+                        } else {
+
+
+                        }
+                    }
+                });
+            });
+        $('#btn-cerrar').click(function () {
+
+            location.href = "https://localhost:44313";
+
+        });
+
+
+
+
+            /*
+ IdAlumnos
+    VchMatricula
+    VchNombre
+    VchApellidos
+    VchCurp
+    VchFechaNac
+    VchTel1
+     VchTel2
+    VchCorreo
+    VchDisertacion
+ VchGenero
+    VchFoto
+    VchAvatar
+     DtFechaIngreso
+     VchCalle
+    IntNoExterior
+    IntNoInterior
+     VchMaps
+    IdUniversidad2
+   IdCarrera2
+  IdResidencia2
+             */
+
+    </script>
+
+}
+
+<div class="modal fade" id="exito" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-primary">
+                <h5 class="modal-title">!Felicidades¡</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>Formulario enviado Exitosamente</p>
+            </div>
+            <div class="modal-footer ">
+                <button type="button" class="btn btn-primary" id="btn-cerrar" data-dismiss="modal">Aceptar</button>
+
+            </div>
+        </div>
+    </div>
+</div>
+
